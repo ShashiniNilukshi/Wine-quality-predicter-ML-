@@ -1,8 +1,11 @@
 # Loading required package
 library(readxl)
+library(NbClust)
+library(cluster)
+
 
 # Loading the data set
-Whitewine_v6 <- read_excel("~/yr2 sem02/Machine Learning and Data Mining/CourseWork/Whitewine_v6.xlsx")
+Whitewine_v6 <- read_excel("Whitewine_v6.xlsx")
 
 # Removing the last column of the data set (Quality)
 modified_Whitewine_v6 <- Whitewine_v6[, -ncol(Whitewine_v6), drop = FALSE]
@@ -49,11 +52,11 @@ outlier_column_6 <-detect_outliers(cleaned_Whitewine_v6_1[[6]])
 outlier_column_9 <-detect_outliers(cleaned_Whitewine_v6_1[[9]])
 
 cleaned_Whitewine_v6_2 <- cleaned_Whitewine_v6_1[
-   !outlier_column_2 &
-     !outlier_column_3 &
-     !outlier_column_4 &
-     !outlier_column_6 & 
-     !outlier_column_9,
+  !outlier_column_2 &
+    !outlier_column_3 &
+    !outlier_column_4 &
+    !outlier_column_6 & 
+    !outlier_column_9,
 ]
 
 

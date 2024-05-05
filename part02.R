@@ -2,9 +2,14 @@
 
 # Loading required package
 library(readxl)
+library(fpc)
+library(cluster)
+library(ggcorrplot)
+library(NbClust)
+library(factoextra)
 
 # Loading the data set
-Whitewine_v6 <- read_excel("~/yr2 sem02/Machine Learning and Data Mining/CourseWork/Whitewine_v6.xlsx")
+Whitewine_v6 <- read_excel("Whitewine_v6.xlsx")
 
 # Removing the last column of the data set (Quality)
 modified_Whitewine_v6 <- Whitewine_v6[, -ncol(Whitewine_v6), drop = FALSE]
@@ -200,7 +205,7 @@ plot(gap_stat, main = "Gap Statistic Plot")
 optimal_k <- maxSE(gap_stat$Tab[, "gap"], gap_stat$Tab[, "SE.sim"], method="Tibs2001SEmax")
 cat("Optimal number of clusters:", optimal_k, "\n")
 
-#Optimal number of clusters: 4
+#Optimal number of clusters: 3
 
 # Load required packages
 library(cluster)
@@ -237,7 +242,7 @@ library(factoextra)
 fviz_cluster(clusters_pca, data = pca_data)
 
 # Calculating the BSS, WSS, TSS
-  
+
 TSS_pca <- clusters_pca$totss  # Total variance in the dataset
 WSS_pca <- sum(clusters_pca$withinss)  # Total within-cluster sum of squares
 BSS_pca <- clusters_pca$betweenss  # Between-cluster sum of squares
